@@ -1,0 +1,26 @@
+{
+  "name": "guardme-1",
+  "version": "1.0.0",
+  "description": "guardme project backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ImTonyS/guardme.git"
+  },
+  "keywords": [
+    "guardme",
+    "backend",
+    "tony",
+    "richy",
+    "damian"
+  ],
+  "author": "Guardme Inc.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ImTonyS/guardme/issues"
+  },
+  "homepage": "https://github.com/ImTonyS/guardme#readme"
+}
