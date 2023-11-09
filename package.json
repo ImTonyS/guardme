@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/ImTonyS/guardme/issues"
   },
-  "homepage": "https://github.com/ImTonyS/guardme#readme"
+  "homepage": "https://github.com/ImTonyS/guardme#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
