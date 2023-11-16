@@ -10,37 +10,66 @@
 <body>
     <!-- MAIN PAGE -->
 
+            <!-- NAV BAR -->
+            <header class="hero">
+                <nav class="nav container container--hero">
 
-        <header class="hero">
-            <nav class="nav container container--hero">
+                    <a href="../main/main.html"><img src="../img/GUARDME LOGO.JPG" class="nav_logo"></a>
 
-                <a href="./main.html"><img src="../img/GUARDME LOGO.JPG" class="nav_logo"></a>
+                    <ul class="nav_list">
+                        <li class="nav_item">
+                            <a href="" class="nav_link">ABOUT US</a>
+                        </li>
+                        <li class="nav_item">
+                            <a href="" class="nav_link">CONTACTS</a>
+                        </li>
+                        <li class="nav_item">
+                            <a href="" class="nav_link">VIDEOS</a>
+                        </li>
+                    </ul>
 
-                <ul class="nav_list">
-                    <li class="nav_item">
-                        <a href="" class="nav_link">ABOUT US</a>
-                    </li>
-                    <li class="nav_item">
-                        <a href="" class="nav_link">CONTACTS</a>
-                    </li>
-                    <li class="nav_item">
-                        <a href="" class="nav_link">VIDEOS</a>
-                    </li>
-                </ul>
+                    <!-- MENU SANDWICH RESPONSIVE -->
+                    <img src="../img/menuw.svg" class="nav_menu">
 
-                <img src="../img/menuw.svg" class="nav_menu">
+                </nav>
+                
+                <!-- HERO TEXTOS -->
+                <section class="hero_main container container--hero">
+                    <article class="hero_texts">
+                        <h1 class="hero_title">WELCOME TO <span>GUARDME</span></h1>
+                        <h2 class="hero_p">Keep your loved ones safe.</h2>
+                        <!-- BOTON SIGN UP -->
+                        <a href="#registered" id="hero_cta" class="hero_cta" >SIGN UP</a>
+                    </article>
+                </section>
+            </header>
+        </section>
 
-            </nav>
-            
-            <section class="hero_main container container--hero">
-                <article class="hero_texts">
-                    <h1 class="hero_title">WELCOME TO <span>GUARDME</span></h1>
-                    <h2 class="hero_p">Remember to fill all the information required and constantly update it if needed. Keep your loved ones safe.</h2>
-                    <a href="#registered" class="hero_cta">REGISTERED PATIENTS</a>
-                </article>
-            </section>
-        </header>
-    </section>
+        <section class="wrapper">
+            <div class="form signup">
+                <header>Signup</header>
+                <img src="../img/icons8-cross-50.png" class="wrapper_close">
+                <!-- AQUI VA LA INFO DEL FORMS -->
+                <form action="">
+                    <input type="text" placeholder="First Name" required>
+                    <input type="text" placeholder="Last Name" required>
+                    <input type="text" placeholder="Email" required>
+                    <input type="password" placeholder="Password" required>
+                    <input type="submit" value="SignUp">
+                </form>
+            </div>
+            <!-- FORMS DEL LOGIN -->
+            <div class="form login">
+                <header>Login</header>
+                <form action="">
+                    <input type="text" placeholder="Email" required>
+                    <input type="password" placeholder="Password" required>
+                    <a href="#">Forgot password?</a>
+                    <input type="submit" value="Login">
+                </form>
+            </div>
+        </section>
+    
 
     
 
