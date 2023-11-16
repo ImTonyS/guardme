@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;700;800&family=Montserrat:wght@200;400;600&family=Nunito+Sans:opsz,wght@6..12,300;6..12,500;6..12,700;6..12,900&display=swap');
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    scroll-behavior: smooth;
+    --azul5: #1154D9;
+    --azul4: #2975D9;
+    --azul3: #5298F2;
+    --azul2: #A2C5F2;
+    --grey: #F2F2F2;
+}
+body{
+    font-family: 'Assistant', sans-serif;
+}
+
+.container{
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 80px 0;
+}
+
+.container--hero{
+    padding: 0;
+}
+
+.nav{
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav .nav_logo{
+    width: 300px;
+}
+
+.nav_menu{
+    width: 40px;
+    background-color: var(--azul4);
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.nav_list{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: var(--grey);
+    padding: 80px 0;
+
+    display: grid;
+    place-content: center;
+    text-align: start;
+    gap: 1.5rem;
+
+    list-style: none;
+
+    transform: translate(-100%);
+    transition: transform .3s;
+}
+
+.nav_list--show{
+    transform: translate(0);
+
+}
+
+
+.nav_link{
+    text-decoration: none;
+    color: var(--azul4);
+    font-size: 3rem;
+    font-weight: 800;
+}
+
+/* Division en dos */
+.container-forms {
+    display: flex;
+    flex-direction: column;
+    
+    width: 100%;
+    height: 100%;
+    top: 8%;
+    left: 20%;
+    border: 3px solid rgba(255,255,255,.6);
+
+}
+
+/* Lado izquierdo */
+.welcome {
+    background: linear-gradient(rgba(0,0,0,.1), rgba(0,0,0,.2)), url("../main/img/alz.jpg");
+    background-size: cover;
+    place-items: center;
+    text-align: center;
+    height: 50vh;
+    color: white;
+    font-size: 18px;
+} 
+
+/* WELCOME... */
+.welcome h1{
+    text-align: center;
+    margin-top: 120px;
+    font-size: 3rem;
+    font-weight: 900;
+}
+
+/* Guardme's website... */
+.welcome h3{
+    max-width: 60%;
+    margin: 20px auto;
+    font-size: 1.0rem;
+    text-align: center;
+}
+
+.forms{
+    color: #2975D9;
+    background-color: #F2F2F2;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.forms h2{
+    font-size: 2.5rem;
+    font-weight: 900;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.input-container{
+    position: relative;
+    margin: 20px 5px;
+    width: 300px;
+    border-bottom: 3px solid #5298F2;
+}
+
+.input-container input{
+    width: 100%;
+    height: 35px;
+    background-color: transparent;
+    margin: 5px 0;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    transition: .5s;
+}
+
+.forms button{
+    width: 100%;
+    height: 45px;
+    border-radius: 40px;
+    background: #2975D9;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: .5s;
+}
+
+.forms button:hover{
+    opacity: .9;
+}
+
+.login a{
+    font-size: .8rem;
+    text-align: center;
+    text-decoration: none;
+    color:#2975D9;
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

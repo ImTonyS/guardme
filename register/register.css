@@ -3,166 +3,173 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Assistant';
+    font-family: 'Assistant', sans-serif;
 }
 
-html{
+:root{
     scroll-behavior: smooth;
+    --azul5: #1154D9;
+    --azul4: #2975D9;
+    --azul3: #5298F2;
+    --azul2: #A2C5F2;
+    --grey: #F2F2F2;
 }
-#register{
+.hero{
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 80px 0;
+}
+
+.container--hero{
+    padding: 0;
+}
+
+.nav{
+    height: 100px;
     display: flex;
-    background: linear-gradient(#0D51D9, #2975D9, #5298F2, #F2F2F2);
-    background-size: cover;
-    background-position: center;
     align-items: center;
-    width: 100%;
-    height: 100vh;
-}
-#register .container header{
-    background-color: #ffff;
-    position: fixed;
-    width: 100%;
-    z-index: 100;
-    top: 0;
-}
-#register .container header .container-header{
-    max-width: 1100px;
-    margin: auto;
-    display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-}
-#register .container header .container-header h1{
-    text-align: center;
-}
-#register .container header .container-header nav ul{
-    list-style: none;
-    display: flex;
-    align-items: center;
-}
-/* Botones de la navbar */
-#register .container header .container-header nav ul li a{
-    text-decoration: none;
-    font-size: 20px;
-    color: #2975D9;
-    margin: 0 18px;
-    font-weight: 900;
-    transition: .5s;
-}
-#register .container header .container-header nav ul a:hover{
-    color: #A2C5F2;
 }
 
-/* Division en dos */
-#register .container-forms {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    position: relative;
-    width: 60%;
-    height: 70%;
-    top: 8%;
-    left: 20%;
-    border: 3px solid rgba(255,255,255,.6);
-
-}
-
-/* Lado izquierdo */
-#register .container-forms .welcome {
-    background: linear-gradient(rgba(0,0,0,.1), rgba(0,0,0,.2)), url("img/alz.jpg");
-    background-size: cover;
-    place-items: center;
-    text-align: center;
-    flex-direction: column;
-    color: white;
-    font-size: 18px;
-} 
-
-/* WELCOME... */
-#register .container-forms .welcome h1{
-    text-align: center;
-    margin-top: 120px;
-    font-size: 3rem;
-    font-weight: 900;
-}
-
-/* Guardme's website... */
-#register .container-forms .welcome h3{
-    max-width: 60%;
-    margin: 20px auto;
-    font-size: 1.0rem;
-    text-align: center;
-}
-
-#register .container-forms .forms{
-    color: #2975D9;
-    background-color: #F2F2F2;
-    display: flex;
-    justify-content: center;
-    
-}
-
-#register .container-forms .forms h2{
-    font-size: 2.5rem;
-    font-weight: 900;
-    text-align: center;
-    margin-top: 2rem;
-}
-
-#register .container-forms .forms .input-container{
-    position: relative;
-    margin: 20px 5px;
+.nav .nav_logo{
     width: 300px;
-    border-bottom: 3px solid #5298F2;
 }
 
-#register .container-forms .forms .input-container input{
-    width: 100%;
-    height: 35px;
-    background-color: transparent;
-    margin: 5px 0;
-    border: none;
-    outline: none;
-    font-weight: bold;
-    transition: .5s;
-}
-
-#register .container-forms .forms button{
-    width: 100%;
-    height: 45px;
-    border-radius: 40px;
-    background: #2975D9;
-    border: none;
-    font-size: 1rem;
-    font-weight: bold;
-    color: white;
+.nav_menu{
+    width: 40px;
+    background-color: var(--azul4);
+    padding: 8px;
+    border-radius: 5px;
     cursor: pointer;
-    margin-top: 15px;
-    transition: .5s;
+    z-index: 100;
 }
 
-#register .container-forms .forms button:hover{
-    opacity: .9;
+.nav_list{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: var(--grey);
+    padding: 80px 0;
+
+    display: grid;
+    place-content: center;
+    text-align: start;
+    gap: 1.5rem;
+
+    list-style: none;
+
+    transform: translate(-100%);
+    transition: transform .3s;
 }
 
-#register .container-forms .forms .login a{
-    font-size: .8rem;
-    text-align: center;
+.nav_list--show{
+    transform: translate(0);
+
+}
+
+
+.nav_link{
     text-decoration: none;
-    color:#2975D9;
-    
+    color: var(--azul4);
+    font-size: 3rem;
+    font-weight: 800;
 }
 
+body{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--grey);
+}
+.wrapper{
+    position: relative;
+    max-width: 470px;
+    width: 100%;
+    border-radius: 12px;
+    background-color: var(--azul5);
+    padding: 20px 30px 120px;
+    box-shadow: 0px 5px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+.form.login{
+    position: absolute;
+    left: 50%;
+    bottom: -86%;
+    transform: translateX(-50%);
+    width: calc(100% + 220px);
+    padding: 20px 140px;
+    height: 100%;
+    border-radius: 50%;
+    background: white;
+    transition: all 0.6s ease;
+}
+.wrapper.active .form.login{
+    bottom: -15%; 
+    box-shadow: 0px -5px 10px rgba(0,0,0,0.1);
+    border-radius: 30%;
+}
+.form header{
+    cursor: pointer;
+    font-size: 30px;
+    text-align: center;
+    color: white;
+    font-weight: 700;
+}
+.wrapper form{
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 40px;
+}
+
+form input{
+    height: 60px;
+    outline: none;
+    border: none;
+    padding: 0 15px;
+    font-size: 16px;
+    font-weight: 400;
+    color: black;
+    border-radius: 8px;
+    background: white;
+}
+.form.login input{
+    border: 1px solid #aaa;
+}
+.form.login input:focus{
+    box-shadow: 0 1px 0 #aaa;
+}
+form a{
+    color: #333;
+    text-decoration: none;
+}
+form a:hover{
+    text-decoration: underline;
+}
+form input[type="submit"]{
+    margin-top: 15px;
+    padding: none;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+
+}
+
+.form.login input[type="submit"]{
+    background: var(--azul5);
+    color: #fff;
+    border: none;
 
 
-
-
-
-
-
-
-
-
-
+}
+.form.login header{
+    color: #333;
+    opacity: 0.6;
+}
 
 
