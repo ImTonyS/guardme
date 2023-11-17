@@ -168,6 +168,8 @@ body{
 .wrapper_close{
     position: absolute;
     top: 3%;
+    left: 87%;
+    height: 40px;
     cursor: pointer;
 }
 
@@ -312,6 +314,7 @@ form input[type="submit"]{
 
     .nav_link:hover{
         color: var(--azul3);
+        text-decoration: underline;
     }
      
     /* HERO MAIN */
