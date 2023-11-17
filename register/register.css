@@ -1,0 +1,228 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    scroll-behavior: smooth;
+    --azul5: #1154D9;
+    --azul4: #2975D9;
+    --azul3: #5298F2;
+    --azul2: #A2C5F2;
+    --grey: #F2F2F2;
+    --grey1: #404040;
+}
+body{
+    font-family: 'Assistant', sans-serif;
+    
+}
+
+.container{
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 80px 0;
+}
+
+.container--hero{
+    padding: 0;
+}
+
+/* NAV ROOT */
+.nav{
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* LOGO GUARDME */
+.nav .nav_logo{
+    width: 300px;
+}
+
+/* MENU SANDW */
+.nav_menu{
+    width: 40px;
+    background-color: var(--azul4);
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 100;
+}
+
+/* LISTA DEL MENU SAND */
+.nav_list{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: var(--grey);
+    padding: 80px 0;
+    z-index: 3;
+
+    display: grid;
+    place-content: center;
+    text-align: start;
+    gap: 3rem;
+
+    list-style: none;
+
+    transform: translate(-100%);
+    transition: transform .3s;
+}
+
+.nav_list--show{
+    transform: translate(0);
+
+}
+
+/* OPCIONES NAV */
+.nav_link{
+    text-decoration: none;
+    color: var(--azul4);
+    font-size: 3rem;
+    font-weight: 800;
+}
+
+/* PATIENT REGISTER */
+.forms{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--azul4);
+}
+
+.forms_container{
+    position: relative;
+    min-height: 490px;
+    max-width: 900px;
+    width: 100%;
+    border-radius: 6px;
+    padding: 30px;
+    margin: 0 15px;
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.forms_container header{
+    position: relative;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--grey1);
+}
+.forms_container header::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 3px;
+    width: 27px;
+    border-radius: 8px;
+    background-color: var(--azul5);
+}
+
+.forms_container form{
+    position: relative;
+    margin-top: 16px;
+    min-height: 490px;
+    background-color: white;
+}
+.forms_container form .details{
+    margin-top: 30px;
+}
+.forms_container form .details.contact{
+    margin-top: 10px;
+}
+.forms_container form .title{
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 6px 0;
+    color: #333;
+}
+.forms_container form .fields{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap ;
+}
+form .fields .input_field{
+    display: flex;
+    width: calc(100%/3 - 15px);
+    flex-direction: column;
+    margin: 4px 0;
+}
+.input_field label{
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--grey1);
+}
+.input_field input{
+    outline: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: #333;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    padding: 0 15px;
+    height: 42px;
+    margin: 8px 0;
+}
+.input_field select{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid #aaa;
+    color: #333;
+    padding: 0 15px;
+    height: 42px;
+    border-radius: 5px;
+    margin: 8px 0;
+    font-size: 14px;
+
+}
+.input_field input:is(:focus, :valid){
+    box-shadow: 0 3px 6px rgba(0,0,0,0.13);
+}
+.input_field input[type="date"]:valid{
+    color: #333;
+}
+
+.forms_container form button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    max-width: 200px;
+    width: 100%;
+    border: none;
+    outline: none;
+    color: #fff;
+    border-radius: 5px;
+    margin: 25px 0;
+    background-color: var(--azul4);
+    transition: all 0.3s linear;
+    cursor: pointer;
+}
+form button:hover{
+    background-color: var(--azul5);
+}
+
+@media (max-width: 750px) {
+    form .fields .input_field{
+        width: calc(100%/2 - 15px);
+    }
+}
+
+@media (max-width: 550px) {
+    form .fields .input_field{
+        width: 100%;
+    }
+}
