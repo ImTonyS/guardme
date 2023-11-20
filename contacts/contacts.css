@@ -3,7 +3,7 @@
 *{
     margin:0;
     padding: 0;
-    box-sizing: border-box;
+    
 }
 
 :root{
@@ -62,14 +62,14 @@ body{
     bottom: 0;
     right: 0;
     left: 0;
-    background-color: var(--grey);
-    padding: 80px 0;
+	background-color: var(--grey);
+    padding: 0;
     z-index: 3;
 
     display: grid;
     place-content: center;
     text-align: start;
-    gap: 1.5rem;
+    
 
     list-style: none;
 
@@ -97,7 +97,7 @@ body{
 	--brandColor: hsl(var(--h), 71%, var(--l));
 	font-family: 'Assistant', sans-serif;
 	margin-top: 20px;
-	background-color: var(--grey);
+	
 }
 
 .editarBTN{
@@ -120,7 +120,7 @@ ol {
 	padding: 0 1rem;
 }
 
-li {
+ol li {
 	--stop: calc(100% / var(--length) * var(--i));
 	--l: 40%;
 	--l2: 88%;
