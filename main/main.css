@@ -74,7 +74,9 @@ body{
     transform: translate(-100%);
     transition: transform .3s;
 }
-
+#signupbtn {
+    cursor: pointer;
+}
 .nav_list--show{
     transform: translate(0);
 
@@ -108,7 +110,7 @@ body{
     text-align: center;
     max-width: 360px;
 
-    padding-top: 230px;
+    padding-top: 100px;
     margin: 0 auto;
 }
 
@@ -265,6 +267,39 @@ form input[type="submit"]{
     opacity: 0.6;
 }
 
+/* ABOUT US */
+.au{
+    background-color: var(--grey);
+    width: 100%;
+    height: 100vh;
+}
+
+.au header{
+    padding-top: 50px;
+    font-size: 100px;
+    font-weight: 900;
+    margin-left: 100px;
+}
+.au_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.au_who{
+    display: grid;
+}
+
+.au_img img{
+    object-fit: cover;
+    object-position: center;
+    width: 500px;
+    height: 500px;
+
+
+
+}
+
 
 
 
@@ -326,7 +361,7 @@ form input[type="submit"]{
         background-position: center;
         text-align: center;
         width: 100%;
-        height: 80vh;
+        height: 100vh;
     }
     
     .hero_texts{
@@ -336,19 +371,19 @@ form input[type="submit"]{
         text-align: center;
         max-width: 900px;
     
-        padding-top: 150px;
+        padding-top: 100px;
         margin: 0 auto;
     }
     
     .hero_title{
-        font-size: 4.5rem;
+        font-size: 7rem;
         color: #1f1f1f;
         max-width: 100%;
       
     
     }
     .hero_title span{
-        font-size: 6rem;
+        font-size: 10rem;
         color: var(--azul5);
         
     }
