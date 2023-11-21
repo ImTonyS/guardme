@@ -25,8 +25,6 @@ signupBtn.addEventListener('click', () => {
     menuList.classList.remove("nav_list--show")
 })
 
-
-
 // ANIMACION DEL LOGIN Y SIGNUP
 loginHeader.addEventListener('click', () => {
     wrapper.classList.add("active");

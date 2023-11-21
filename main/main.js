@@ -22,10 +22,8 @@ wrapperClose.addEventListener('click', () => {
 
 signupBtn.addEventListener('click', () => {
     wrapper.classList.add("index");
-    menuList.classList.remove("nav_list--show")
+    menuList.classList.remove("nav_list--show");
 })
-
-
 
 // ANIMACION DEL LOGIN Y SIGNUP
 loginHeader.addEventListener('click', () => {
