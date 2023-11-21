@@ -1,0 +1,12 @@
+{
+  "name": "guardme",
+  "version": "1.0.0",
+  "description": "COMANDOS DE GIT\r Para eliminar datos de una branch sin borrarlos de local\r  git rm -r --cached \"register\" \"register copy\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
