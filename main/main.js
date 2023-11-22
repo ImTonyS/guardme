@@ -48,3 +48,9 @@ links.forEach(function(link){
 
     });
 }); 
+
+//
+document.getElementsByName("submitButton").addEventListener("submit",(e) => {
+    e.preventDefault();
+
+})

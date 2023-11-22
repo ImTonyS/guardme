@@ -39,7 +39,7 @@
                         <h1 class="hero_title">WELCOME TO <span>GUARDME</span></h1>
                         <h2 class="hero_p">Keep your loved ones safe.</h2>
                         <!-- BOTON SIGN UP -->
-                        <a href="#registered" id="hero_cta" class="hero_cta" >SIGN UP</a>
+                        <a id="hero_cta" class="hero_cta" >SIGN UP</a>
                     </article>
                 </section>
             </header>
@@ -49,21 +49,22 @@
             <div class="form signup">
                 <header>Signup</header>
                 <img src="../img/criss.png" class="wrapper_close">
-                <!-- AQUI VA LA INFO DEL FORMS -->
-                <form action="">
-                    <input type="text" placeholder="First Name" required>
-                    <input type="text" placeholder="Last Name" required>
-                    <input type="text" placeholder="Email" required>
-                    <input type="password" placeholder="Password" required>
-                    <input type="submit" value="SignUp">
+
+                <!-- REGISTER FORM -->
+                <form action="/" method="POST">
+                    <input type="text" name="firstName" placeholder="First Name" required>
+                    <input type="text" name="lastName" placeholder="Last Name" required>
+                    <input type="text" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <input type="submit" name="submitButton" value="SignUp">
                 </form>
             </div>
-            <!-- FORMS DEL LOGIN -->
+            <!-- LOGIN FORM -->
             <div class="form login">
                 <header>Login</header>
                 <form action="">
-                    <input type="text" placeholder="Email" required>
-                    <input type="password" placeholder="Password" required>
+                    <input type="text" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Password" required>
                     <a href="#">Forgot password?</a>
                     <input type="submit" value="Login">
                 </form>
