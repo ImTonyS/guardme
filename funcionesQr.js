@@ -1,5 +1,7 @@
 var latitud;
 var longitud;
+var enlace;
+const destinatario = 'damiangof2@gmail.com';
 
 // Función para obtener la ubicación y mostrar el código QR
 function obtenerYMostrarUbicacion() {
@@ -20,7 +22,6 @@ function obtenerYMostrarUbicacion() {
         mostrarError("Geolocalization is not available on this browser.");
     }
 }
-
 // Función para generar un código QR dinámico
 function generarCodigoQR(contenido) {
     var qrcode = new QRCode(document.getElementById("qrcode"), {
@@ -32,17 +33,21 @@ function generarCodigoQR(contenido) {
 
 // Función para generar un enlace de Google Maps
 function generarEnlaceGoogleMaps(latitud, longitud) {
-    const enlace = `https://www.google.com/maps?q=${latitud},${longitud}`;
+    enlace = `https://www.google.com/maps?q=${latitud},${longitud}`;
     console.log("Enlace de Google Maps:", enlace);
     return enlace;
 }
 
 // Función para enviar el enlace por correo electrónico
-function enviarCorreoElectronico(enlace) {
+function enviarCorreoElectronico(enlace, destinatario) {
+        // Objeto con el enlace de Google Maps
+        const emailData = {
+            destinatario: destinatario,
+            enlaceGoogleMaps: enlace,
+        };
     const serviceID = 'default_service';
     const templateID = 'template_x3vj23l';
-    const emailData = {enlace:enlace};
-
+    
     emailjs.send(serviceID, templateID, emailData)
         .then(function(response) {
             console.log('Correo electrónico enviado con éxito:', response);
@@ -56,14 +61,15 @@ function generarCodigoYEnlace() {
     const enlaceGoogleMaps = generarEnlaceGoogleMaps(latitud, longitud);
     generarCodigoQR(enlaceGoogleMaps);
 
-    // Envía el enlace por correo electrónico
-    enviarCorreoElectronico(enlaceGoogleMaps);
+    // Envía el enlace por correo electrónico con la dirección del destinatario
+    enviarCorreoElectronico(enlaceGoogleMaps, destinatario);
 }
 
 // Asigna evento al botón utilizando el modelo de eventos
 document.getElementById("generateBtn").addEventListener("click", function(event) {
     event.preventDefault();
 
-    // Tu código de obtención de ubicación y generación de enlace aquí
-    obtenerYMostrarUbicacion();
-});
+     // Tu código de obtención de ubicación y generación de enlace aquí
+     obtenerYMostrarUbicacion();
+    });
+
