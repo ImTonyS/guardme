@@ -22,10 +22,31 @@ app.use(express.static(__dirname + '/main'))
 
 
 // routes
-app.get('/contacts', isAuthenticated, (req, res) => {res.sendFile(__dirname + '/contacts/contacts.html');});
-app.get('/home', isAuthenticated, (req, res) => {res.sendFile(__dirname + '/home/home.html');});
-app.get('/', (req,res) => {res.sendFile(__dirname + '/main/main.html')});
-app.get('/register', isAuthenticated, (req, res) => {res.sendFile(__dirname + '/register/register.html');});
+app.get('/contacts', isAuthenticated, (req, res) => {
+    res.sendFile(__dirname + '/contacts/contacts.html');
+});
+
+app.get('/home', isAuthenticated, (req, res) => {
+    res.sendFile(__dirname + '/home/home.html');
+});
+
+app.get('/', (req,res) => {
+    res.sendFile(__dirname + '/main/main.html')
+});
+
+app.get('/register', isAuthenticated, (req, res) => {
+    res.sendFile(__dirname + '/register/register.html');
+});
+
+app.get('/session', (req, res) => {
+    if (req.session && req.session.userId) {
+        // The user is authenticated
+        res.json({ isAuthenticated: true });
+    } else {
+        // The user is not authenticated
+        res.json({ isAuthenticated: false });
+    }
+});
 
 
 //database connection
