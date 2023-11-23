@@ -6,16 +6,26 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 
 
+// Middleware to check if the user is authenticated
+const isAuthenticated = (req, res, next) => {
+    if (req.session && req.session.userId) {
+        return next();
+    } else {
+        return res.sendStatus(401); // Unauthorized
+    }
+};
+
+
 //static files
 app.use(express.static(__dirname));
 app.use(express.static(__dirname + '/main'))
 
 
 // routes
-app.get('/contacts', (req,res) => {res.sendFile(__dirname + '/contacts/contacts.html')});
-app.get('/home', (req,res) => {res.sendFile(__dirname + '/home/home.html')});
+app.get('/contacts', isAuthenticated, (req, res) => {res.sendFile(__dirname + '/contacts/contacts.html');});
+app.get('/home', isAuthenticated, (req, res) => {res.sendFile(__dirname + '/home/home.html');});
 app.get('/', (req,res) => {res.sendFile(__dirname + '/main/main.html')});
-app.get('/register', (req,res) => {res.sendFile(__dirname + '/register/register.html')});
+app.get('/register', isAuthenticated, (req, res) => {res.sendFile(__dirname + '/register/register.html');});
 
 
 //database connection
@@ -88,11 +98,12 @@ app.post('/login', async (req, res) => {
                     } else {
                         console.error('Stored Password:', hashedPassword);
                         console.error('Entered Password:', password);
-                        console.error('Incorrect Password');
-                        res.status(401).send('Incorrect Password');
+                        // codes to identify login errors
+                        // console.error('Incorrect Password');
+                        // res.status(401).send('Incorrect Password');
                     }
                 } else {
-                    console.error('Usuario no encontrado');
+                    console.error('User not');
                     res.status(401).send('Incorrect Credentials');
                 }
             }
