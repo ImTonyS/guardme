@@ -57,7 +57,7 @@ const signUpForm = document.querySelector('form');
 
 // "submit" event listener
 signUpForm.addEventListener('submit', async function (event) {
-    event.preventDefault();
+    event.preventDefault(); //stops the "submit" from refreshing the page
 
     const formData = new FormData(signUpForm);
 
@@ -82,19 +82,32 @@ signUpForm.addEventListener('submit', async function (event) {
 });
 
 
+///////////////////////////// User login functionality
 
+const loginForm = document.getElementById('loginForm');
 
-//     // Aquí deberías agregar la lógica para enviar los datos del formulario al servidor
-//     // y verificar si el registro fue exitoso. Por ejemplo, podrías usar fetch() para enviar una solicitud al servidor.
+loginForm.addEventListener('submit', async function (event) {
+    event.preventDefault();
 
-//     // Simulación de una solicitud exitosa (reemplaza esto con tu lógica real)
-//     const registrationSuccessful = true;
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
 
-//     if (registrationSuccessful) {
-//         // Redirige al usuario a home.html si el registro fue exitoso
-//         window.location.href = '../home/home.html';
-//     } else {
-//         // Si el registro no fue exitoso, puedes manejarlo de acuerdo a tus necesidades
-//         console.log('Error en el registro');
-//     }
-// });
+    try {
+        const response = await fetch('/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, password }),
+        });
+
+        if (response.ok) {
+            // if registration successful, redirect to home
+            window.location.href = '../home/home.html';
+        } else {
+            console.error('Login Error');
+        }
+    } catch (error) {
+        console.error('Request Error:', error);
+    }
+});

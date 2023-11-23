@@ -3,6 +3,7 @@ const app = express();
 const PORT = 3000;
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
+const bcrypt = require('bcrypt');
 
 
 //static files
@@ -11,34 +12,10 @@ app.use(express.static(__dirname + '/main'))
 
 
 // routes
-app.get('/contacts', (req,res) => {
-    res.sendFile(__dirname + '/contacts/contacts.html')
-});
-
-app.get('/home', (req,res) => {
-    res.sendFile(__dirname + '/home/home.html')
-});
-
-app.get('/', (req,res) => {
-    res.sendFile(__dirname + '/main/main.html')
-});
-
-app.get('/register', (req,res) => {
-    res.sendFile(__dirname + '/register/register.html')
-});
-
-
-// // middleware 
-// app.use(bodyParser.urlencoded({ extended:true }));
-
-// //prueba de POST request
-// app.post('/', (req,res) => {
-//     const firstName = req.body.firstName;
-//     const lastName = req.body.lastName;
-//     const email = req.body.email;
-//     const password = req.body.password;
-// })
-
+app.get('/contacts', (req,res) => {res.sendFile(__dirname + '/contacts/contacts.html')});
+app.get('/home', (req,res) => {res.sendFile(__dirname + '/home/home.html')});
+app.get('/', (req,res) => {res.sendFile(__dirname + '/main/main.html')});
+app.get('/register', (req,res) => {res.sendFile(__dirname + '/register/register.html')});
 
 
 //database connection
@@ -58,44 +35,77 @@ connection.connect((err) => {
     console.log('Database connection succesful')
   })
 
-  app.use(express.json());
 
-  app.post('/registerUser', (req, res) => {
-      const { firstName, lastName, email, password } = req.body;
+//User Registration 
+app.use(express.json());
+
+app.post('/registerUser', async (req, res) => {
+    const { firstName, lastName, email, password } = req.body;
+
+    try {
+    // Encrypt Password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Database data inseriton
+    const query = 'INSERT INTO users (first_name, last_name, email, password, created_at, active) VALUES (?, ?, ?, ?, CURDATE(), 1)';
+    connection.query(query, [firstName, lastName, email, hashedPassword], (error, results) => {
+        if (error) {
+            console.error('Query Error:', error);
+            res.status(500).send('Server Error');
+        } else {
+            console.log('Registration Successful!');
+            res.sendStatus(200);
+        }
+    });
+} catch (error) {
+    console.error('Encryptaion Error:', error);
+    res.status(500).send('Server Error');
+}
+});
   
-      // Aquí deberías agregar la lógica para insertar los datos en la base de datos
-      const query = 'INSERT INTO users (first_name, last_name, email, password, created_at, active) VALUES (?, ?, ?, ?, NOW(), 1)';
-      connection.query(query, [firstName, lastName, email, password], (error, results) => {
-          if (error) {
-              console.error('Error en la consulta:', error);
-              res.status(500).send('Error en el servidor');
-          } else {
-              console.log('Usuario registrado exitosamente');
-              res.sendStatus(200);
-          }
-      });
-  });
-  
-  
 
-// // Realizar la consulta SELECT *
-// const queryString = 'SELECT * FROM users';
+//User Login
+app.post('/login', async (req, res) => {
+    const { email, password } = req.body;
 
-// connection.query(queryString, (err, rows) => {
-//   if (err) {
-//     console.error('Error en la consulta:', err);
-//     return;
-//   }
+    try {
+        // Obtains hash from database to authenticate password
+        const query = 'SELECT id_user, password FROM users WHERE email = ?';
+        connection.query(query, [email], async (error, results) => {
+            if (error) {
+                console.error('Query Error:', error);
+                res.status(500).send('Server Error');
+            } else {
+                if (results.length > 0) {
+                    const hashedPassword = results[0].password;
 
-//   // Procesar los resultados
-//   console.log('Resultados de la consulta:');
-//   console.log(rows);
+                    // Compares user's password with the one stored
+                    const match = await bcrypt.compare(password, hashedPassword);
 
-//   // Cerrar la conexión después de realizar la consulta
-//   connection.end();
-// });
+                    if (match) {
+                        console.log('Successful Login!');
+                        res.sendStatus(200);
+                    } else {
+                        console.error('Stored Password:', hashedPassword);
+                        console.error('Entered Password:', password);
+                        console.error('Incorrect Password');
+                        res.status(401).send('Incorrect Password');
+                    }
+                } else {
+                    console.error('Usuario no encontrado');
+                    res.status(401).send('Incorrect Credentials');
+                }
+            }
+        });
+    } catch (error) {
+        console.error('Login Error:', error);
+        res.status(500).send('Server Error');
+    }
+});
 
-//server config
-app.listen(PORT, () =>{
+
+
+//server
+app.listen(PORT,() => {
     console.log('server running on port', PORT)
 })
