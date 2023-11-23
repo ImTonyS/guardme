@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "express.js": "^1.0.0",
+    "node.js": "^0.0.1-security",
+    "qrcode.js": "^0.0.1"
+  }
+}
