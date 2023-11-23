@@ -28,16 +28,16 @@ app.get('/register', (req,res) => {
 });
 
 
-// middleware 
-app.use(bodyParser.urlencoded({ extended:true }));
+// // middleware 
+// app.use(bodyParser.urlencoded({ extended:true }));
 
-//prueba de POST request
-app.post('/', (req,res) => {
-    const firstName = req.body.firstName;
-    const lastName = req.body.lastName;
-    const email = req.body.email;
-    const password = req.body.password;
-})
+// //prueba de POST request
+// app.post('/', (req,res) => {
+//     const firstName = req.body.firstName;
+//     const lastName = req.body.lastName;
+//     const email = req.body.email;
+//     const password = req.body.password;
+// })
 
 
 
@@ -58,6 +58,25 @@ connection.connect((err) => {
     console.log('Database connection succesful')
   })
 
+  app.use(express.json());
+
+  app.post('/registerUser', (req, res) => {
+      const { firstName, lastName, email, password } = req.body;
+  
+      // Aquí deberías agregar la lógica para insertar los datos en la base de datos
+      const query = 'INSERT INTO users (first_name, last_name, email, password, created_at, active) VALUES (?, ?, ?, ?, NOW(), 1)';
+      connection.query(query, [firstName, lastName, email, password], (error, results) => {
+          if (error) {
+              console.error('Error en la consulta:', error);
+              res.status(500).send('Error en el servidor');
+          } else {
+              console.log('Usuario registrado exitosamente');
+              res.sendStatus(200);
+          }
+      });
+  });
+  
+  
 
 // // Realizar la consulta SELECT *
 // const queryString = 'SELECT * FROM users';

@@ -49,8 +49,52 @@ links.forEach(function(link){
     });
 }); 
 
-//
-document.getElementsByName("submitButton").addEventListener("submit",(e) => {
-    e.preventDefault();
+///////////////////////////// User registration functionality
 
-})
+
+
+const signUpForm = document.querySelector('form');
+
+// "submit" event listener
+signUpForm.addEventListener('submit', async function (event) {
+    event.preventDefault();
+
+    const formData = new FormData(signUpForm);
+
+    try {
+        const response = await fetch('/registerUser', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(Object.fromEntries(formData)),
+        });
+
+        if (response.ok) {
+            // if registration successful, redirect to home
+            window.location.href = '../home/home.html';
+        } else {
+            console.error('Registration Error');
+        }
+    } catch (error) {
+        console.error('Request Error:', error);
+    }
+});
+
+
+
+
+//     // Aquí deberías agregar la lógica para enviar los datos del formulario al servidor
+//     // y verificar si el registro fue exitoso. Por ejemplo, podrías usar fetch() para enviar una solicitud al servidor.
+
+//     // Simulación de una solicitud exitosa (reemplaza esto con tu lógica real)
+//     const registrationSuccessful = true;
+
+//     if (registrationSuccessful) {
+//         // Redirige al usuario a home.html si el registro fue exitoso
+//         window.location.href = '../home/home.html';
+//     } else {
+//         // Si el registro no fue exitoso, puedes manejarlo de acuerdo a tus necesidades
+//         console.log('Error en el registro');
+//     }
+// });
