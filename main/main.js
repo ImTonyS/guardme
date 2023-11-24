@@ -48,3 +48,101 @@ links.forEach(function(link){
 
     });
 }); 
+
+
+///////////////////////////// User registration functionality
+
+const signUpForm = document.querySelector('form');
+
+// "submit" event listener
+signUpForm.addEventListener('submit', async function (event) {
+    event.preventDefault(); //stops the "submit" from refreshing the page
+
+    const formData = new FormData(signUpForm);
+
+    try {
+        const response = await fetch('/registerUser', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(Object.fromEntries(formData)),
+        });
+
+        if (response.ok) {
+            // if registration successful, redirect to home
+            window.location.href = '../home/home.html';
+        } else {
+            console.error('Registration Error');
+        }
+    } catch (error) {
+        console.error('Request Error:', error);
+    }
+});
+
+
+///////////////////////////// User login functionality
+
+const loginForm = document.getElementById('loginForm');
+
+loginForm.addEventListener('submit', async function (event) {
+    event.preventDefault();
+
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+
+    try {
+        const response = await fetch('/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, password }),
+        });
+
+        if (response.ok) {
+            // if registration successful, redirect to home
+            window.location.href = '../home/home.html';
+        } else {
+            console.error('Login Error');
+        }
+    } catch (error) {
+        console.error('Request Error:', error);
+    }
+});
+
+
+///////////////////////////// authentification functionality
+
+async function getSessionInfo() {
+    try {
+        const response = await fetch('/session');
+        if (response.ok) {
+            const sessionInfo = await response.json();
+            return sessionInfo;
+        } else {
+            console.error('Error fetching session information');
+            return null;
+        }
+    } catch (error) {
+        console.error('Request error:', error);
+        return null;
+    }
+}
+
+// Update the link when clicking the icon
+const iconLink = document.getElementById('iconLink');
+
+iconLink.addEventListener('click', async () => {
+    const sessionInfo = await getSessionInfo();
+
+    if (sessionInfo && sessionInfo.isAuthenticated) {
+        // If the user is authenticated, redirect to the home page
+        window.location.href = '../home/home.html';
+    } else {
+        // If the user is not authenticated, redirect to the main page
+        window.location.href = '../main/main.html';
+    }
+});
+
+

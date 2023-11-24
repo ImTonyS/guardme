@@ -17,3 +17,31 @@ links.forEach(function(link){
 
     });
 }); 
+
+///////////////////////////// Patient Registration functionality
+
+document.getElementById('registerForm').addEventListener('submit', async function (event) {
+    event.preventDefault();
+
+    // Get form data
+    const formData = new FormData(this);
+
+    try {
+        const response = await fetch('/registerPatient', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(Object.fromEntries(formData)),
+        });
+
+        if (response.ok) {
+            // If registration successful, redirect to home or any other page
+            window.location.href = '../home/home.html';
+        } else {
+            console.error('Registration Error');
+        }
+    } catch (error) {
+        console.error('Request Error:', error);
+    }
+});

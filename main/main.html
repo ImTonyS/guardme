@@ -24,7 +24,7 @@
                         </li>
                         
                         <li class="nav_item">
-                            <p class="nav_link" id="signupbtn">SIGN UP</p>
+                            <p class="nav_link" id="signupbtn">SIGNUP / LOGIN</p>
                         </li>
                     </ul>
 
@@ -39,7 +39,7 @@
                         <h1 class="hero_title">WELCOME TO <span>GUARDME</span></h1>
                         <h2 class="hero_p">Keep your loved ones safe.</h2>
                         <!-- BOTON SIGN UP -->
-                        <a href="#registered" id="hero_cta" class="hero_cta" >SIGN UP</a>
+                        <a id="hero_cta" class="hero_cta" >SIGNUP / LOGIN</a>
                     </article>
                 </section>
             </header>
@@ -49,21 +49,22 @@
             <div class="form signup">
                 <header>Signup</header>
                 <img src="../img/criss.png" class="wrapper_close">
-                <!-- AQUI VA LA INFO DEL FORMS -->
-                <form action="">
-                    <input type="text" placeholder="First Name" required>
-                    <input type="text" placeholder="Last Name" required>
-                    <input type="text" placeholder="Email" required>
-                    <input type="password" placeholder="Password" required>
+
+                <!-- REGISTER FORM -->
+                <form action="/regis" method="POST">
+                    <input type="text" name="firstName" placeholder="First Name" required>
+                    <input type="text" name="lastName" placeholder="Last Name" required>
+                    <input type="text" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Password" required>
                     <input type="submit" value="SignUp">
                 </form>
             </div>
-            <!-- FORMS DEL LOGIN -->
+            <!-- LOGIN FORM -->
             <div class="form login">
                 <header>Login</header>
-                <form action="">
-                    <input type="text" placeholder="Email" required>
-                    <input type="password" placeholder="Password" required>
+                <form id="loginForm" action="">
+                    <input type="text" name="email" id="loginEmail" placeholder="Email" required>
+                    <input type="password" name="password" id="loginPassword" placeholder="Password" required>
                     <a href="#">Forgot password?</a>
                     <input type="submit" value="Login">
                 </form>
@@ -75,7 +76,7 @@
                 <header>About Us</header>
                 <div class="au_what">
                         <h2>What & Who is GuardMe?</h2>
-                    <p>GuardMe, a visionary project with a mission to aid others, was created with a specific purpose in mind. Alzheimer's, a widely recognized disease worldwide, relentlessly impacts lives, targeting the very essence of individuals and their cognitive well-being. The project envisions a future where innovative solutions and support systems safeguard against the challenges posed by Alzheimer's, reflecting a commitment to enhancing the quality of life for those affected by this pervasive neurological condition. </p>
+                    <p>GuardMe, a visionary project with a mission to aid others, was created with a specific purpose in mind. Alzheimer's, a widely recognized disease, relentlessly impacts lives, targeting the very essence of individuals and their cognitive well-being. The project envisions a future where innovative solutions and support systems safeguard against the challenges posed by Alzheimer's, reflecting a commitment to enhancing the quality of life for those affected by this pervasive neurological condition. </p>
                 </div>
                 <div class="au_who">
                     <h2>GuardMe's team</h2>

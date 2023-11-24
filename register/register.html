@@ -20,7 +20,7 @@
                     <a href="../home/home.html" class="nav_link">HOME</a>
                 </li>
                 <li class="nav_item">
-                    <a href="../contacts/contacts.html" class="nav_link">CONTACTS</a>
+                    <a href="../contacts/contacts.html" class="nav_link">PATIENT LIST</a>
                 </li>
             </ul>
             
@@ -33,7 +33,7 @@
         <div class="forms_container">
             <header>Patient Register</header>
 
-            <form action="">
+            <form id="registerForm" action="">
                 <div class="form first">
                     <div class="details patient">
                         <span class="title">Patient Information</span>
@@ -53,17 +53,7 @@
                                 <label>Birth Date</label>
                                 <input type="date" placeholder="Enter birth date" required>
                             </div>
-
-                            <div class="input_field">
-                                <label>Institution</label>
-                                <input type="text" placeholder="Enter Institution" required>
-                            </div>
                             
-                            <div class="input_field">
-                                <label>Medical Service</label>
-                                <input type="text" placeholder="Enter MS">
-                            </div>
-
                             <div class="input_field">
                                 <label>Gender</label>
                                 <select id="gender">
@@ -92,9 +82,9 @@
                             </div>
                             
                             <div class="input_field">
-                                <label>Relationship</label>
-                                <input type="text" placeholder="Enter relationship" required>
-                            </div>
+                                <label>Phone Number</label>
+                                <input type="number" placeholder="Enter phone number" required>
+                            </div> 
 
                             <div class="input_field">
                                 <label>Phone Number</label>
