@@ -1,0 +1,269 @@
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;700;800&family=Montserrat:wght@200;400;600&family=Nunito+Sans:opsz,wght@6..12,300;6..12,500;6..12,700;6..12,900&display=swap');
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    scroll-behavior: smooth;
+    --azul5: #1154D9;
+    --azul4: #2975D9;
+    --azul3: #5298F2;
+    --azul2: #A2C5F2;
+    --grey: #F2F2F2;
+}
+body{
+    font-family: 'Assistant', sans-serif;
+    
+}
+
+.container{
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 80px 0;
+}
+
+.container--hero{
+    padding: 0;
+}
+
+/* NAV ROOT */
+.nav{
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* LOGO GUARDME */
+.nav .nav_logo{
+    width: 300px;
+}
+
+/* MENU SANDW */
+.nav_menu{
+    width: 40px;
+    background-color: var(--azul4);
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 100;
+}
+
+/* LISTA DEL MENU SAND */
+.nav_list{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: var(--grey);
+    padding: 80px 0;
+    z-index: 3;
+
+    display: grid;
+    place-content: center;
+    text-align: start;
+    gap: 1.5rem;
+
+    list-style: none;
+
+    transform: translate(-100%);
+    transition: transform .3s;
+}
+#signupbtn {
+    cursor: pointer;
+}
+.nav_list--show{
+    transform: translate(0);
+
+}
+
+/* OPCIONES NAV */
+.nav_link{
+    text-decoration: none;
+    color: var(--azul4);
+    font-size: 3rem;
+    font-weight: 800;
+}
+
+/* hero main (es el contenedor de todos los textos) */
+
+/* HERO ROOT */
+.hero_main{
+    background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url("../img/alzhome.jpg");  
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.hero_texts{
+    display: grid;
+    gap: 0rem;
+    width: 100%;
+    text-align: center;
+    max-width: 380px;
+
+    padding-top: 200px;
+    margin: 0 auto;
+}
+
+.hero_title{
+    font-size: 5.5rem;
+    font-weight: 900;
+    color: var(--azul5);
+    max-width: 100%;
+}
+
+.hero_subtitle{
+    color: var(--azul4);
+}
+
+.hero_p{
+    font-size: 1.5rem;
+    line-height: 1.5cm;
+    color: #1f1f1f;
+    padding-top: 70px;
+}
+
+.hero_cta{ 
+    text-decoration: none;
+    font-size: 2rem;
+    color: var(--azul5);
+    font-weight: 900;
+    border: 3px solid var(--azul5);
+    border-radius: 25px;
+
+    
+    justify-self: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+.hero_cta:hover{
+    background-color: var(--azul5);
+    color: white;
+    transition: .5s;
+}
+
+
+
+
+
+
+
+
+@media (min-width: 760px) {
+    
+    .container{
+        width: 90%;
+        max-width: 100%;
+        margin: 0 auto;
+        overflow: hidden;
+        padding: 80px 0;
+    }
+    .nav_menu{
+        display: none;
+    }
+    
+    .nav_list{
+        position: static;
+        background-color: transparent;
+
+        padding: 0;
+    
+        display: flex;
+        gap: 2rem;
+       
+        list-style: none;
+    
+        transform: unset;
+        transition: none;
+    }
+
+    
+    .nav_list--show{
+        transform: unset;
+    
+    }
+    
+    .nav_link{
+        text-decoration: none;
+        color: var(--azul4);
+        font-size: 1.5rem;
+        font-weight: 800;
+    }
+
+    .nav_link:hover{
+        color: var(--azul3);
+        text-decoration: underline;
+    }
+     
+    /* HERO MAIN */
+
+    .hero_main{
+        background-image: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url("../img/alzhome.jpg");  
+        background-size: cover;
+        background-position: center;
+        text-align: center;
+        width: 100%;
+        height: 100vh;
+    }
+    
+    .hero_texts{
+        display: grid;
+        width: 100%;
+        text-align: center;
+        max-width: 1200px;
+    
+        padding-top: 150px;
+        margin: 0 auto;
+    }
+    
+    .hero_title{
+        font-size: 10rem;
+        font-weight: 900;
+        color: var(--azul5);
+        max-width: 100%;
+    }
+    
+    .hero_subtitle{
+        font-size: 2rem;
+        color: var(--azul4);
+    }
+    
+    .hero_p{
+        font-size: 2.5rem;
+        line-height: 1.5cm;
+        color: #1f1f1f;
+        padding-top: 70px;
+    }
+    
+    .hero_cta{ 
+        text-decoration: none;
+        font-size: 2rem;
+        color: var(--azul5);
+        font-weight: 900;
+        border: 3px solid var(--azul5);
+        border-radius: 25px;
+    
+        
+        justify-self: center;
+        padding: 20px;
+        margin-top: 40px;
+    }
+    
+    .hero_cta:hover{
+        background-color: var(--azul5);
+        color: white;
+        transition: .5s;
+    }
+    
+
+    
+}

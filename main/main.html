@@ -4,35 +4,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GUARDME</title>
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="./main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="shortcut icon" href="../img/guardme.png" type="image/x-icon">
+
 </head>
 <body>
-    <!-- SECCION INICIO -->
-    <section id="inicio">
-        <div class="container">
-            <header>
-                <div class="container-header">
-                    <a href="main.html" class="#main"><img src="img/GUARDME LOGO.JPG" height="90"></a>
-                    <nav id="nav">
-                        <ul class="links">
-                            <li><a href="#contacts">CONTACTS</a></li>
-                            <li><a href="#aboutus">ABOUT US</a></li>
-                            <li><a href="#videos">VIDEOS</a></li>
-                        </ul>
-                    </nav>
-                </div>
+    <!-- MAIN PAGE -->
+
+            <!-- NAV BAR -->
+            <header class="hero">
+                <nav class="nav container container--hero">
+
+                    <a href="../main/main.html"><img src="../img/GUARDME LOGO.JPG" class="nav_logo"></a>
+
+                    <ul class="nav_list">
+                        <li class="nav_item">
+                            <a href="#aboutus" class="nav_link">ABOUT US</a>
+                        </li>
+                        
+                        <li class="nav_item">
+                            <p class="nav_link" id="signupbtn">SIGNUP / LOGIN</p>
+                        </li>
+                    </ul>
+
+                    <!-- MENU SANDWICH RESPONSIVE -->
+                    <img src="../img/menuw.svg" class="nav_menu">
+
+                </nav>
+                
+                <!-- HERO TEXTOS -->
+                <section class="hero_main container container--hero">
+                    <article class="hero_texts">
+                        <h1 class="hero_title">WELCOME TO <span>GUARDME</span></h1>
+                        <h2 class="hero_p">Keep your loved ones safe.</h2>
+                        <!-- BOTON SIGN UP -->
+                        <a id="hero_cta" class="hero_cta" >SIGNUP / LOGIN</a>
+                    </article>
+                </section>
             </header>
-            
-            <div class="presentation">
-                <p class="welcome">WELCOME TO <span>GUARDME</span></p>
-                <h2>Remember to fill all the information <br>
-                    required and constantly update it if needed. <br>
-                    Keep your loved ones safe.</h2>
-                    <a href="#registered-patients">Registered Patients</a>
+        </section>
+
+        <section class="wrapper">
+            <div class="form signup">
+                <header>Signup</header>
+                <img src="../img/criss.png" class="wrapper_close">
+
+                <!-- REGISTER FORM -->
+                <form action="/regis" method="POST">
+                    <input type="text" name="firstName" placeholder="First Name" required>
+                    <input type="text" name="lastName" placeholder="Last Name" required>
+                    <input type="text" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <input type="submit" value="SignUp">
+                </form>
             </div>
-        </div>
-    </section>
-        
+            <!-- LOGIN FORM -->
+            <div class="form login">
+                <header>Login</header>
+                <form id="loginForm" action="">
+                    <input type="text" name="email" id="loginEmail" placeholder="Email" required>
+                    <input type="password" name="password" id="loginPassword" placeholder="Password" required>
+                    <a href="#">Forgot password?</a>
+                    <input type="submit" value="Login">
+                </form>
+            </div>
+        </section>
+
+        <section class="au" id="aboutus">
+            <div class="au_container">
+                <header>About Us</header>
+                <div class="au_what">
+                        <h2>What & Who is GuardMe?</h2>
+                    <p>GuardMe, a visionary project with a mission to aid others, was created with a specific purpose in mind. Alzheimer's, a widely recognized disease, relentlessly impacts lives, targeting the very essence of individuals and their cognitive well-being. The project envisions a future where innovative solutions and support systems safeguard against the challenges posed by Alzheimer's, reflecting a commitment to enhancing the quality of life for those affected by this pervasive neurological condition. </p>
+                </div>
+                <div class="au_who">
+                    <h2>GuardMe's team</h2>
+                    <div class="who_img">
+                        <figure class="au_img">
+                            <img src="../img/tony.jpg">
+                        </figure>
+                         
+                        <figure class="au_img">
+                            <img src="../img/damian.jpeg">
+                        </figure>
+
+                        <figure class="au_img">
+                            <img src="../img/richy.jpeg">
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+
+    
+
+    <script src="./main.js"></script>
 </body>
 </html>
