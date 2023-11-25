@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "express": "^4.18.2",
+    "express.js": "^1.0.0",
+    "mysql": "^2.18.1",
+    "node.js": "^0.0.1-security",
+    "qrcode.js": "^0.0.1"
+  },
+  "name": "guardme",
+  "version": "1.0.0",
+  "main": "funcionesQr.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

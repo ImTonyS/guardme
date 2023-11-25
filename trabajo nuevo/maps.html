@@ -1,0 +1,26 @@
+<!-- HTML -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geolocalización y Google Maps</title>
+    <!-- Incluye la API de Google Maps JavaScript -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvPVi_qAjvupuOVuBugDqkweR66TP-cXM"></script>
+    <!-- Incluye la biblioteca QRCode.js -->
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+     <script type="text/javascript"> emailjs.init('briyE_i7PA_eCYtB7')</script>
+</head>
+<body>
+    <h3>Presiona el boton de abajo para mandar la ubicacion del paciente a sus familiares</h3>
+
+    <!-- Div para mostrar el código QR -->
+    <div id="qrcode"></div>
+
+    <!-- Botón para generar el código QR y el enlace de Google Maps -->
+    <button id="generateBtn">Mandar ubicacion a los familiares</button>
+
+    <!-- Incluye el archivo de funciones JavaScript --> 
+    <script src="funcionesQr.js"></script>
+</body>
+</html>
