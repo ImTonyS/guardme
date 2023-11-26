@@ -74,7 +74,7 @@ body{
     transform: translate(-100%);
     transition: transform .3s;
 }
-#signupbtn {
+#logoutbtn {
     cursor: pointer;
 }
 .nav_list--show{
@@ -109,7 +109,7 @@ body{
     text-align: center;
     max-width: 380px;
 
-    padding-top: 200px;
+    padding-top: 100px;
     margin: 0 auto;
 }
 
@@ -221,7 +221,7 @@ body{
         text-align: center;
         max-width: 1200px;
     
-        padding-top: 150px;
+        padding-top: 80px;
         margin: 0 auto;
     }
     

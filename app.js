@@ -47,7 +47,7 @@ app.get("/session", (req, res) => {
   }
 });
 
-app.get("/whatsapptest", async (req, res) => {
+app.post("/whatsapptest", async (req, res) => {
   console.log("whatsapptest");
   const TOKEN = process.env.WHATSAPP_TOKEN;
   const FROM = process.env.WHATSAPP_FROM;
@@ -55,8 +55,8 @@ app.get("/whatsapptest", async (req, res) => {
   console.log("token =>", TOKEN);
   console.log("from =>", FROM);
 
-  const phoneNumber = "+526141707620";
-  const message = "Hola, este es un mensaje de prueba de magiosito";
+  const phoneNumber = "+526143715030";
+  const message = "Texto de prueba, que rollo panquesito";
 
   //wadata es el objeto que se envia a la api de whatsapp
   const waData = {
@@ -92,9 +92,9 @@ app.get("/whatsapptest", async (req, res) => {
 //database connection
 const connection = mysql.createConnection({
   host: "localhost",
-  port: "3308",
+  port: "3306",
   user: "root",
-  password: "rarm",
+  password: "",
   database: "guardme",
 });
 
