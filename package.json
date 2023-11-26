@@ -1,20 +1,29 @@
 {
-  "name": "guardme",
+  "name": "guardme-1",
   "version": "1.0.0",
-  "description": "COMANDOS DE GIT\r Para eliminar datos de una branch sin borrarlos de local\r  git rm -r --cached \"register\" \"register copy\"",
-  "main": "app.js",
+  "description": "guardme project backend",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ImTonyS/guardme.git"
+  },
+  "keywords": [
+    "guardme",
+    "backend",
+    "tony",
+    "richy",
+    "damian"
+  ],
+  "author": "Guardme Inc.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ImTonyS/guardme/issues"
+  },
+  "homepage": "https://github.com/ImTonyS/guardme#readme",
   "dependencies": {
-    "bcrypt": "^5.1.1",
-    "body-parser": "^1.20.2",
-    "express": "^4.18.2",
-    "mysql": "^2.18.1",
-    "nodemon": "^3.0.1"
+    "express": "^4.18.2"
   }
 }
