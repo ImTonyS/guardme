@@ -55,8 +55,8 @@ app.post("/whatsapptest", async (req, res) => {
   console.log("token =>", TOKEN);
   console.log("from =>", FROM);
 
-  const phoneNumber = "+526143715030";
-  const message = "Texto de prueba, que rollo panquesito";
+  const phoneNumber = "+526141246295";
+  const message = "Muchas gracias por tu apoyo! de parte del equipo de GuardMe, bonita noche";
 
   //wadata es el objeto que se envia a la api de whatsapp
   const waData = {
