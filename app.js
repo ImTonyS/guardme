@@ -47,6 +47,14 @@ app.get("/session", (req, res) => {
   }
 });
 
+app.get("/registerPatient", (req,res) =>{
+  console.log("Patient registration successful")
+})
+
+app.get("/registerContact", (req,res) =>{
+  console.log("Contact registration successful")
+})
+
 app.get("/whatsapptest", async (req, res) => {
   console.log("whatsapptest");
   const TOKEN = process.env.WHATSAPP_TOKEN;
@@ -55,7 +63,7 @@ app.get("/whatsapptest", async (req, res) => {
   console.log("token =>", TOKEN);
   console.log("from =>", FROM);
 
-  const phoneNumber = "+526141707620";
+  const phoneNumber = "+";
   const message = "Hola, este es un mensaje de prueba de magiosito";
 
   //wadata es el objeto que se envia a la api de whatsapp
@@ -177,6 +185,51 @@ app.post("/login", async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+
+// Patient, contact registration
+
+// Handle user registration
+app.post('/ContPatRegister', async (req, res) => {
+  const { patient, contact } = req.body;
+
+  try {
+      // Code to insert patient information into the database
+      const patientQuery =
+          'INSERT INTO patients (first_name, last_name, gender, birth_date, created_at, active) VALUES (?, ?, ?, ?, NOW(), 1)';
+      connection.query(
+          patientQuery,
+          [patient.firstName, patient.lastName, patient.gender, patient.birthDate],
+          (error, patientResults) => {
+              if (error) {
+                  console.error('Patient Registration Error:', error);
+                  res.status(500).send('Server Error');
+              } else {
+                  // Code to insert contact information into the database
+                  const contactQuery =
+                      'INSERT INTO contacts (first_name, last_name, phone_num, email, created_at, active) VALUES (?, ?, ?, ?, NOW(), 1)';
+                  connection.query(
+                      contactQuery,
+                      [contact.firstName, contact.lastName, contact.phoneNum, contact.email],
+                      (error, contactResults) => {
+                          if (error) {
+                              console.error('Contact Registration Error:', error);
+                              res.status(500).send('Server Error');
+                          } else {
+                              console.log('User Registration Successful!');
+                              res.sendStatus(200);
+                          }
+                      }
+                  );
+              }
+          }
+      );
+  } catch (error) {
+      console.error('User Registration Error:', error);
+      res.status(500).send('Server Error');
+  }
+});
+
+
 
 //server
 app.listen(PORT, () => {

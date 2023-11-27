@@ -130,19 +130,5 @@ async function getSessionInfo() {
     }
 }
 
-// Update the link when clicking the icon
-const iconLink = document.getElementById('iconLink');
-
-iconLink.addEventListener('click', async () => {
-    const sessionInfo = await getSessionInfo();
-
-    if (sessionInfo && sessionInfo.isAuthenticated) {
-        // If the user is authenticated, redirect to the home page
-        window.location.href = '../home/home.html';
-    } else {
-        // If the user is not authenticated, redirect to the main page
-        window.location.href = '../main/main.html';
-    }
-});
 
 
