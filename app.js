@@ -47,7 +47,7 @@ app.get("/session", (req, res) => {
   }
 });
 
-app.post("/whatsapptest", async (req, res) => {
+app.get("/whatsapptest", async (req, res) => {
   console.log("whatsapptest");
   const TOKEN = process.env.WHATSAPP_TOKEN;
   const FROM = process.env.WHATSAPP_FROM;
@@ -55,13 +55,15 @@ app.post("/whatsapptest", async (req, res) => {
   console.log("token =>", TOKEN);
   console.log("from =>", FROM);
 
-  const phoneNumber = "+526141246295";
-  const message = "Muchas gracias por tu apoyo! de parte del equipo de GuardMe, bonita noche";
+  const phoneNumber = "+526144577880";
+  const message = "Muchas gracias por su apoyo! De parte de el equipo de guardme";
+  const link = "https://www.google.com/maps?q=28.617364,-106.044986";
+  res.sendFile(__dirname + "/whatsapptest/whatsapptest.html");
 
   //wadata es el objeto que se envia a la api de whatsapp
   const waData = {
     to: phoneNumber,
-    template: "notificacionesdgv",
+    template: "guardme",
     locale: "es_MX",
     components: [
       {
@@ -71,6 +73,10 @@ app.post("/whatsapptest", async (req, res) => {
             type: "text",
             text: message,
           },
+          {
+            type: "text",
+            text: link,
+          }
         ],
       },
     ],
