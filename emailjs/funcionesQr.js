@@ -3,8 +3,8 @@ var longitud;
 var enlace;
 const destinatario = 'damiangof2@gmail.com';
 
-// Función para obtener la ubicación y mostrar el código QR
-function obtenerYMostrarUbicacion() {
+// Función para obtener la ubicación y enviar el enlace por correo electrónico
+function obtenerYEnviarUbicacion() {
     if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(function (position) {
             latitud = position.coords.latitude;
@@ -13,22 +13,14 @@ function obtenerYMostrarUbicacion() {
             console.log("Latitud:", latitud);
             console.log("Longitud:", longitud);
 
-            // Llama a la función para generar el código QR y el enlace de Google Maps
-            generarCodigoYEnlace();
+            // Llama a la función para generar el enlace de Google Maps y enviar por correo electrónico
+            generarEnlaceYEnviarCorreo();
         }, function (error) {
             mostrarErrorGeolocalizacion(error);
         });
     } else {
         mostrarError("Geolocalization is not available on this browser.");
     }
-}
-// Función para generar un código QR dinámico
-function generarCodigoQR(contenido) {
-    var qrcode = new QRCode(document.getElementById("qrcode"), {
-        text: contenido,
-        width: 500,
-        height: 500
-    });
 }
 
 // Función para generar un enlace de Google Maps
@@ -40,14 +32,14 @@ function generarEnlaceGoogleMaps(latitud, longitud) {
 
 // Función para enviar el enlace por correo electrónico
 function enviarCorreoElectronico(enlace, destinatario) {
-        // Objeto con el enlace de Google Maps
-        const emailData = {
-            destinatario: destinatario,
-            enlaceGoogleMaps: enlace,
-        };
+    // Objeto con el enlace de Google Maps
+    const emailData = {
+        destinatario: destinatario,
+        enlaceGoogleMaps: enlace,
+    };
     const serviceID = 'default_service';
     const templateID = 'template_x3vj23l';
-    
+
     emailjs.send(serviceID, templateID, emailData)
         .then(function(response) {
             console.log('Correo electrónico enviado con éxito:', response);
@@ -56,10 +48,9 @@ function enviarCorreoElectronico(enlace, destinatario) {
         });
 }
 
-// Función para generar el código QR y el enlace de Google Maps
-function generarCodigoYEnlace() {
+// Función para generar el enlace de Google Maps y enviar el correo electrónico
+function generarEnlaceYEnviarCorreo() {
     const enlaceGoogleMaps = generarEnlaceGoogleMaps(latitud, longitud);
-    generarCodigoQR(enlaceGoogleMaps);
 
     // Envía el enlace por correo electrónico con la dirección del destinatario
     enviarCorreoElectronico(enlaceGoogleMaps, destinatario);
@@ -69,7 +60,5 @@ function generarCodigoYEnlace() {
 document.getElementById("generateBtn").addEventListener("click", function(event) {
     event.preventDefault();
 
-     // Tu código de obtención de ubicación y generación de enlace aquí
-     obtenerYMostrarUbicacion();
-    });
-
+    obtenerYEnviarUbicacion();
+});
