@@ -55,7 +55,7 @@ app.get("/whatsapptest", async (req, res) => {
   console.log("token =>", TOKEN);
   console.log("from =>", FROM);
 
-  const phoneNumber = "+526144577880";
+  const phoneNumber = "+526143673827";
   const message = "Muchas gracias por su apoyo! De parte de el equipo de guardme";
   const link = "https://www.google.com/maps?q=28.617364,-106.044986";
   res.sendFile(__dirname + "/whatsapptest/whatsapptest.html");

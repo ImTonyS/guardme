@@ -2,7 +2,7 @@ const menu = document.querySelector('.nav_menu');
 const menuList = document.querySelector('.nav_list');
 const links = document.querySelectorAll('.nav_link');
 
-// CLICK EN MENU SANDW LLAMA LA LISTA DE OPCIONES
+// Click on sandwich menu opens the sidebar menu
 menu.addEventListener('click', function(){
 
     menuList.classList.toggle('nav_list--show');
