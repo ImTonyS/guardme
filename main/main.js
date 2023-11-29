@@ -114,21 +114,21 @@ loginForm.addEventListener('submit', async function (event) {
 
 ///////////////////////////// authentification functionality
 
-async function getSessionInfo() {
-    try {
-        const response = await fetch('/session');
-        if (response.ok) {
-            const sessionInfo = await response.json();
-            return sessionInfo;
-        } else {
-            console.error('Error fetching session information');
-            return null;
-        }
-    } catch (error) {
-        console.error('Request error:', error);
-        return null;
-    }
-}
+// async function getSessionInfo() {
+//     try {
+//         const response = await fetch('/session');
+//         if (response.ok) {
+//             const sessionInfo = await response.json();
+//             return sessionInfo;
+//         } else {
+//             console.error('Error fetching session information');
+//             return null;
+//         }
+//     } catch (error) {
+//         console.error('Request error:', error);
+//         return null;
+//     }
+// }
 
 
 

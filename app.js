@@ -6,6 +6,18 @@ const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
 const { createBot } = require("whatsapp-cloud-api");
 require("dotenv").config();
+const router = express.Router();
+const userController = require('./controllers/user-controller');
+const generateAndSaveQRCode = require('./tools/qrFunctions');
+const indexRouter = require('./routes/index');
+
+const connection = mysql.createConnection({
+  host: "localhost",
+  port: "3308",
+  user: "root",
+  password: "rarm",
+  database: "guardme",
+});
 
 // Middleware to check if the user is authenticated
 const isAuthenticated = (req, res, next) => {
@@ -19,6 +31,9 @@ const isAuthenticated = (req, res, next) => {
 //static files
 app.use(express.static(__dirname));
 app.use(express.static(__dirname + "/main"));
+app.use(bodyParser.urlencoded({ extended: false}));
+app.use(bodyParser.json());
+app.use('/', indexRouter);
 
 // routes
 app.get("/contacts", isAuthenticated, (req, res) => {
@@ -55,96 +70,12 @@ app.get("/registerContact", (req,res) =>{
   console.log("Contact registration successful")
 })
 
-app.get("/whatsapptest", async (req, res) => {
-  console.log("whatsapptest");
-  const TOKEN = process.env.WHATSAPP_TOKEN;
-  const FROM = process.env.WHATSAPP_FROM;
 
-  console.log("token =>", TOKEN);
-  console.log("from =>", FROM);
 
-  const phoneNumber = "+";
-  const message = "Hola, este es un mensaje de prueba de magiosito";
 
-  //wadata es el objeto que se envia a la api de whatsapp
-  const waData = {
-    to: phoneNumber,
-    template: "notificacionesdgv",
-    locale: "es_MX",
-    components: [
-      {
-        type: "body",
-        parameters: [
-          {
-            type: "text",
-            text: message,
-          },
-        ],
-      },
-    ],
-  };
-
-  console.log("wadata =>", waData);
-
-  try {
-    const bot = createBot(FROM, TOKEN);
-    const { to, template, locale, components } = waData;
-    const response = await bot.sendTemplate(to, template, locale, components);
-    console.log("WA Message Sent =>", response);
-    res.status(200).send(response);
-  } catch (error) {
-    res.status(400).send(error);
-  }
-});
-
-//database connection
-const connection = mysql.createConnection({
-  host: "localhost",
-  port: "3308",
-  user: "root",
-  password: "rarm",
-  database: "guardme",
-});
-
-connection.connect((err) => {
-  if (err) {
-    console.error("Database connection failed", err);
-    return;
-  }
-  console.log("Database connection succesful");
-});
 
 //User Registration
 app.use(express.json());
-
-app.post("/registerUser", async (req, res) => {
-  const { firstName, lastName, email, password } = req.body;
-
-  try {
-    // Encrypt Password
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    // Database data inseriton
-    const query =
-      "INSERT INTO users (first_name, last_name, email, password, created_at, active) VALUES (?, ?, ?, ?, CURDATE(), 1)";
-    connection.query(
-      query,
-      [firstName, lastName, email, hashedPassword],
-      (error, results) => {
-        if (error) {
-          console.error("Query Error:", error);
-          res.status(500).send("Server Error");
-        } else {
-          console.log("Registration Successful!");
-          res.sendStatus(200);
-        }
-      }
-    );
-  } catch (error) {
-    console.error("Encryptaion Error:", error);
-    res.status(500).send("Server Error");
-  }
-});
 
 //User Login
 app.post("/login", async (req, res) => {
@@ -194,8 +125,12 @@ app.post('/ContPatRegister', async (req, res) => {
 
   try {
       // Code to insert patient information into the database
+      const baseUrl = `${req.protocol}://${req.get('host')}`;
+      
+      
+      var PatientId = 0;
       const patientQuery =
-          'INSERT INTO patients (first_name, last_name, gender, birth_date, created_at, active) VALUES (?, ?, ?, ?, NOW(), 1)';
+          'INSERT INTO patients (first_name, last_name, gender, link, birth_date, created_at, active) VALUES (?, ?, ?, NULL, ?, NOW(), 1)';
       connection.query(
           patientQuery,
           [patient.firstName, patient.lastName, patient.gender, patient.birthDate],
@@ -204,25 +139,46 @@ app.post('/ContPatRegister', async (req, res) => {
                   console.error('Patient Registration Error:', error);
                   res.status(500).send('Server Error');
               } else {
+                PatientId = patientResults.insertId;
                   // Code to insert contact information into the database
                   const contactQuery =
-                      'INSERT INTO contacts (first_name, last_name, phone_num, email, created_at, active) VALUES (?, ?, ?, ?, NOW(), 1)';
+                      'INSERT INTO contacts (patient_id, first_name, last_name, phone_num, email, created_at, active) VALUES (?, ?, ?, ?, ?, NOW(), 1)';
                   connection.query(
                       contactQuery,
-                      [contact.firstName, contact.lastName, contact.phoneNum, contact.email],
+                      [PatientId, contact.firstName, contact.lastName, contact.phoneNum, contact.email],
                       (error, contactResults) => {
                           if (error) {
                               console.error('Contact Registration Error:', error);
-                              res.status(500).send('Server Error');
                           } else {
+                            
+                            const link = `${baseUrl}/service/${contactResults.insertId}`
+                            generateAndSaveQRCode(link, `./QR/${contact.firstName}-${contactResults.insertId}.png`);
+                            const linkQuery = 'UPDATE patients SET link = ? WHERE id_patient = ?';
+                            connection.query(
+                                linkQuery,
+                                [link, PatientId],
+                                (error, updateResults) => {
+                                    if (error) {
+                                        console.error('Link Update Error:', error);
+                                        res.status(500).send('Server Error');
+                                    } else {
+                                        console.log('Link Update Successful!');
+                                        res.status(200).json({ success: true, name: contact.firstName, id: contactResults.insertId });
+                                    }
+                                }
+                            );
                               console.log('User Registration Successful!');
-                              res.sendStatus(200);
                           }
                       }
                   );
               }
           }
       );
+
+      
+      
+
+
   } catch (error) {
       console.error('User Registration Error:', error);
       res.status(500).send('Server Error');
@@ -235,3 +191,5 @@ app.post('/ContPatRegister', async (req, res) => {
 app.listen(PORT, () => {
   console.log("server running on port", PORT);
 });
+
+

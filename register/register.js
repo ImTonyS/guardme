@@ -54,7 +54,13 @@ registrationForm.addEventListener('submit', async function (event) {
         });
 
         if (response.ok) {
+            const responseData = await response.json();  // Parsea la respuesta como JSON
             console.log('Registration Successful!');
+            const baseUrl = window.location.origin;
+
+        // Armar la URL con los parámetros necesarios
+            const downloadUrl = `${baseUrl}/download?name=${responseData.name}&id=${responseData.id}`;
+            window.location.href = downloadUrl; 
         } else {
             console.error('Registration Error');
         }
