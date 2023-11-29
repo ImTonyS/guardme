@@ -33,30 +33,30 @@
         <div class="forms_container">
             <header>Patient Register</header>
 
-            <form id="registerForm" action="">
+            <form id="registrationForm" action="/registerUserInfo" method="POST">
                 <div class="form first">
-                    <div class="details patient">
+                    <div class="form patient">
                         <span class="title">Patient Information</span>
 
                         <div class="fields">
                             <div class="input_field">
                                 <label>First Name</label>
-                                <input type="text" placeholder="Enter first name" required>
+                                <input type="text" name="PatFirstName" placeholder="Enter first name" required>
                             </div>
 
                             <div class="input_field">
                                 <label>Last Name</label>
-                                <input type="text" placeholder="Enter last name" required>
+                                <input type="text" name="PatLastName" placeholder="Enter last name" required>
                             </div>
                             
                             <div class="input_field">
                                 <label>Birth Date</label>
-                                <input type="date" placeholder="Enter birth date" required>
+                                <input type="date" name="BirthDate" placeholder="Enter birth date" required>
                             </div>
                             
                             <div class="input_field">
                                 <label>Gender</label>
-                                <select id="gender">
+                                <select name="gender" id="gender">
                                     <option value="">Select an option</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
@@ -66,33 +66,33 @@
                             
                         </div>
                     </div>
-        
-                    <div class="details contact">
+                    
+                    <div class="form contact">
                         <span class="title">Contact Information</span>
 
                         <div class="fields">
                             <div class="input_field">
                                 <label>First Name</label>
-                                <input type="text" placeholder="Enter first name" required>
+                                <input type="text" name="ConFirstName" placeholder="Enter first name" required>
                             </div>
                             
                             <div class="input_field">
                                 <label>Last Name</label>
-                                <input type="text" placeholder="Enter last name" required>
+                                <input type="text" name="ConLastName" placeholder="Enter last name" required>
                             </div>
                             
                             <div class="input_field">
                                 <label>Phone Number</label>
-                                <input type="number" placeholder="Enter phone number" required>
+                                <input type="number" name="ConPhoneNumber" placeholder="Enter phone number" required>
                             </div> 
 
                             <div class="input_field">
                                 <label>Email</label>
-                                <input type="email" placeholder="Enter email address" required>
+                                <input type="email" name="ConEmail" placeholder="Enter email address" required>
                             </div>  
                         </div>
 
-                        <button class="registerBtn">
+                        <button type="submit" class="registerBtn">
                             <span class="btnText">Register</span>
                         </button>
                     </div>
