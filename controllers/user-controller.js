@@ -83,7 +83,13 @@ async function whatsapp(phone, latitude, longitude) {
   }
 };
 
-
+async function sendEmail(req,res) {
+  try {
+    
+  } catch (error) {
+    
+  }
+}
 
 async function sendInfo(req, res) {
   try {
