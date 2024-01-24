@@ -62,81 +62,15 @@ app.get("/session", (req, res) => {
   }
 });
 
-<<<<<<< HEAD
-app.get("/whatsapptest", async (req, res) => {
-  console.log("whatsapptest");
-  const TOKEN = process.env.WHATSAPP_TOKEN;
-  const FROM = process.env.WHATSAPP_FROM;
-=======
 app.get("/registerPatient", (req,res) =>{
   console.log("Patient registration successful")
 })
->>>>>>> main
 
-app.get("/registerContact", (req,res) =>{
+app.get("/registerContact", (req,res) =>{;
   console.log("Contact registration successful")
 })
 
-<<<<<<< HEAD
-  const phoneNumber = "+526143673827";
-  const message = "Muchas gracias por su apoyo! De parte de el equipo de guardme";
-  const link = "https://www.google.com/maps?q=28.617364,-106.044986";
-  res.sendFile(__dirname + "/whatsapptest/whatsapptest.html");
 
-  //wadata es el objeto que se envia a la api de whatsapp
-  const waData = {
-    to: phoneNumber,
-    template: "guardme",
-    locale: "es_MX",
-    components: [
-      {
-        type: "body",
-        parameters: [
-          {
-            type: "text",
-            text: message,
-          },
-          {
-            type: "text",
-            text: link,
-          }
-        ],
-      },
-    ],
-  };
-
-  console.log("wadata =>", waData);
-
-  try {
-    const bot = createBot(FROM, TOKEN);
-    const { to, template, locale, components } = waData;
-    const response = await bot.sendTemplate(to, template, locale, components);
-    console.log("WA Message Sent =>", response);
-    res.status(200).send(response);
-  } catch (error) {
-    res.status(400).send(error);
-  }
-});
-
-//database connection
-const connection = mysql.createConnection({
-  host: "localhost",
-  port: "3306",
-  user: "root",
-  password: "",
-  database: "guardme",
-});
-
-connection.connect((err) => {
-  if (err) {
-    console.error("Database connection failed", err);
-    return;
-  }
-  console.log("Database connection succesful");
-});
-=======
-
->>>>>>> main
 
 //User Registration
 app.use(express.json());

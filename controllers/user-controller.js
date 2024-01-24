@@ -83,6 +83,24 @@ async function whatsapp(phone, latitude, longitude) {
   }
 };
 
+async function emailjs(email, latitude, longitude){
+    const eTOKEN = "briyE_i7PA_eCYtB7";
+    const eFROM = "zftv6QPfV4XlcyrbfOY3-";
+
+    enlace = `https://www.google.com/maps?q=${latitude},${longitude}`;
+    const message = "Your Patient's QR Code Has been scanned this is the known location:" + enlace;
+
+    const eDATA = {
+      service_id: 'service_m2s2fo3',
+      template_id: 'template_x3vj23l',
+      user_id: 'briyE_i7PA_eCYtB7',
+      template_params: {
+        'username': 'James'
+      }
+
+    }
+}
+
 
 
 async function sendInfo(req, res) {
