@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Dynamic Download Page</title>
+    <style>
+        body {
+            font-family: 'Assistant', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f0f0f0; /* Color de fondo */
+        }
+
+        :root {
+            scroll-behavior: smooth;
+            --azul5: #1154D9;
+            --azul4: #2975D9;
+            --azul3: #5298F2;
+            --azul2: #A2C5F2;
+            --grey: #F2F2F2;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+            padding: 80px 0;
+        }
+
+        /* Centered Download Button */
+        .download-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .download-container h1 {
+            font-size: 4rem;
+            color: #1f1f1f;
+            margin-bottom: 20px;
+        }
+
+        .download-container p {
+            font-size: 1.5rem;
+            color: #1f1f1f;
+            margin-bottom: 40px;
+        }
+
+        .download-container #downloadButton {
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: white;
+            font-weight: 900;
+            text-decoration: none;
+            background-color: var(--azul5); /* Color del botón */
+            border: 3px solid var(--azul5);
+            border-radius: 25px;
+            padding: 15px 30px; /* Ajusta el espaciado dentro del botón */
+            margin-top: 20px;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .download-container #downloadButton:hover {
+            background-color: var(--azul3); /* Color de fondo al pasar el ratón */
+            transition: background-color 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="download-container">
+        <h1>Download Your QR Code</h1>
+        <p>Click the button below to download your QR Code.</p>
+        <button id="downloadButton">Download QR Code</button>
+
+        <script>
+            document.getElementById('downloadButton').addEventListener('click', function() {
+                // Extract parameters from the URL
+                var urlParams = new URLSearchParams(window.location.search);
+                var name = urlParams.get('name');
+                var id = urlParams.get('id');
+
+                // Obtener la base URL dinámica del objeto window
+                var baseUrl = window.location.origin;
+
+                // Generar la ruta del archivo con los parámetros necesarios
+                var filePath = baseUrl + '/QR/' + name + '-' + id + '.png';
+
+                var downloadLink = document.createElement('a');
+                downloadLink.href = filePath;
+                downloadLink.download = '';  // Puedes ajustar el nombre del archivo si es necesario
+
+                // Simular un clic en el enlace
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+            });
+        </script>
+    </div>
+
+    <!-- Rest of your HTML content -->
+</body>
+</html>
