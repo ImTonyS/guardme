@@ -6,6 +6,7 @@ const Contact = require('../models/user-model').Contact;
 const { createBot } = require("whatsapp-cloud-api");
 const path = require('path');
 const { response } = require('express');
+const nodemailer = require('nodemailer');
 
 
 async function createUser(req,res) {
@@ -41,71 +42,53 @@ async function LocationPage(req, res) {
   }
 }
 
-async function whatsapp(phone, latitude, longitude) {
-    const TOKEN = process.env.WHATSAPP_TOKEN;
-    const FROM = process.env.WHATSAPP_FROM;
+async function sendLocationByEmail(email, latitude, longitude) {
+  try {
 
-    console.log("token =>", TOKEN);
-    console.log("from =>", FROM);
-
-    enlace = `https://www.google.com/maps?q=${latitude},${longitude}`;
-    const message = "Your Patient's QR Code Has been scanned this is the known location:" + enlace;
-
-    //wadata es el objeto que se envia a la api de whatsapp
-    const waData = {
-      to: `+52${phone}`,
-      template: "notificacionesdgv",
-      locale: "es_MX",
-      components: [
-        {
-          type: "body",
-          parameters: [
-            {
-              type: "text",
-              text: message,
-            },
-          ],
-        },
-      ],
+    let transporter = nodemailer.createTransport({
+      host: 'smtp-mail.outlook.com',
+      port: 587,
+      secure: false, // true for 465, false for other ports
+      auth: {
+        user: 'guardmeteam123@hotmail.com', // tu dirección de correo electrónico de Outlook
+        pass: 'guardme123',
+      },
+    });
+    
+    let mailOptions = {
+      from: 'guardmeteam123@hotmail.com',
+      to: email,
+      subject: 'GuardMe:  Patient Location',
+      text: `Greetings,\n\nSomeone has scanned your patient's QR code. Enter the following link to view the location on Google Maps:\n\nHere's the link: https://www.google.com/maps?q=${longitude},${latitude}\n\nBest wishes,\nGuardMe Team`
     };
 
-    console.log("wadata =>", waData);
+    const info = await transporter.sendMail(mailOptions);
 
-    try {
-      const bot = createBot(FROM, TOKEN);
-      const { to, template, locale, components } = waData;
-      const response = await bot.sendTemplate(to, template, locale, components);
-      console.log("WA Message Sent =>", response);
-      return true
-    } catch (error) {
-      console.log(error)
-      return false
-  }
-};
-
-async function sendEmail(req,res) {
-  try {
-    
+    console.log('Correo electrónico enviado:', info.response);
+    return true;
   } catch (error) {
-    
-  }
+    console.error('Error al enviar el correo electrónico:', error);
+    return false;
+  } 
 }
+
 
 async function sendInfo(req, res) {
   try {
     const id = req.body.id;
-    const longitude = req.body.latitud 
-    const latitude = req.body.longitud
+    const longitude = req.body.latitud;
+    const latitude = req.body.longitud;
     const contact = await Contact.getContactByPatientID(id);
-    const phone = contact[0].phone_num;
+    const email = contact[0].email;
 
+    const success = await sendLocationByEmail(email, latitude, longitude);
 
-   const success = await whatsapp(phone, longitude, latitude);
     res.status(200).json({ success: success, message: 'Ubicación enviada exitosamente' });
   } catch (error) {
     res.status(500).json({ success: false, message: error });
   }
 }
+
 
 
 const redirectToDownload = (req, res) => {
