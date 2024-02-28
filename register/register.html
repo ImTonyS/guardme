@@ -12,9 +12,7 @@
     <!-- NAV BAR -->
     <header class="hero">
         <nav class="nav container container--hero">
-
             <a href="../home/home.html"><img src="../img/GUARDME LOGO.JPG" class="nav_logo"></a>
-
             <ul class="nav_list">
                 <li class="nav_item">
                     <a href="../home/home.html" class="nav_link">HOME</a>
@@ -23,7 +21,6 @@
                     <a href="../contacts/contacts.html" class="nav_link">PATIENT LIST</a>
                 </li>
             </ul>
-            
             <!-- MENU SANDWICH RESPONSIVE -->
             <img src="../img/menuw.svg" class="nav_menu">
         </nav>
@@ -32,66 +29,61 @@
     <section class="forms">
         <div class="forms_container">
             <header>Patient Register</header>
-
             <form id="registrationForm" action="/registerUserInfo" method="POST">
                 <div class="form first">
                     <div class="form patient">
                         <span class="title">Patient Information</span>
-
                         <div class="fields">
                             <div class="input_field">
                                 <label>First Name</label>
                                 <input type="text" name="PatFirstName" placeholder="Enter first name" required>
                             </div>
-
                             <div class="input_field">
                                 <label>Last Name</label>
                                 <input type="text" name="PatLastName" placeholder="Enter last name" required>
                             </div>
-                            
                             <div class="input_field">
                                 <label>Birth Date</label>
                                 <input type="date" name="BirthDate" placeholder="Enter birth date" required>
                             </div>
-                            
                             <div class="input_field">
                                 <label>Gender</label>
-                                <select name="gender" id="gender">
+                                <select name="gender" id="gender" required>
                                     <option value="">Select an option</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
                                     <option value="Other">Other</option>
                                 </select>
                             </div>
-                            
+                            <!-- Select con opciones de asilos -->
+                            <div class="input_field">
+                                <label>Select Nursing Home</label>
+                                <select name="nursingHome" id="nursingHome" required>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     
                     <div class="form contact">
                         <span class="title">Contact Information</span>
-
                         <div class="fields">
                             <div class="input_field">
                                 <label>First Name</label>
                                 <input type="text" name="ConFirstName" placeholder="Enter first name" required>
                             </div>
-                            
                             <div class="input_field">
                                 <label>Last Name</label>
                                 <input type="text" name="ConLastName" placeholder="Enter last name" required>
                             </div>
-                            
                             <div class="input_field">
                                 <label>Phone Number</label>
                                 <input type="number" name="ConPhoneNumber" placeholder="Enter phone number" required>
                             </div> 
-
                             <div class="input_field">
                                 <label>Email</label>
                                 <input type="email" name="ConEmail" placeholder="Enter email address" required>
                             </div>  
                         </div>
-
                         <button type="submit" class="registerBtn">
                             <span class="btnText">Register</span>
                         </button>
@@ -100,16 +92,8 @@
             </form>    
         </div>
     </section>
-
-            <div class="test"></div>
-            
-            <!-- HERO TEXTOS -->
-            
-
-
-
-
-
+    <div class="test"></div>
+    <!-- HERO TEXTOS -->
     <script src="./register.js"></script>
 </body>
 </html>

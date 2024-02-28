@@ -28,6 +28,18 @@ const isAuthenticated = (req, res, next) => {
   }
 };
 
+app.get('/viewasilos', async (req, res) => {
+  try {
+    const response = await fetch('http://10.100.0.117:9090/viewasilos');
+    const data = await response.json();
+    res.json(data);
+  } catch (error) {
+    console.error('Error al obtener los datos de la API externa:', error);
+    res.status(500).json({ error: 'Error al obtener los datos de la API externa' });
+  }
+});
+
+
 //static files
 app.use(express.static(__dirname));
 app.use(express.static(__dirname + "/main"));
