@@ -48,12 +48,16 @@ async function sendLocationByEmail(email, latitude, longitude) {
     let transporter = nodemailer.createTransport({
       host: 'smtp-mail.outlook.com',
       port: 587,
-      secure: false, // true for 465, false for other ports
+      secure: false, // No se establece una conexión segura
       auth: {
-        user: 'guardmeteam123@hotmail.com', // tu dirección de correo electrónico de Outlook
+        user: 'guardmeteam123@hotmail.com', // Tu dirección de correo electrónico de Outlook
         pass: 'guardme123',
       },
+      tls: {
+        rejectUnauthorized: false // Deshabilitar la verificación del certificado SSL
+      }
     });
+    
     
     let mailOptions = {
       from: 'guardmeteam123@hotmail.com',

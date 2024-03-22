@@ -110,19 +110,19 @@ body{
     text-align: center;
     max-width: 360px;
 
-    padding-top: 80px;
+    padding-top: 60px;
     margin: 0 auto;
 }
 
 .hero_title{
-    font-size: 4rem;
+    font-size: 3rem;
     color: #1f1f1f;
     max-width: 100%;
   
 
 }
 .hero_title span{
-    font-size: 5rem;
+    font-size: 4rem;
     color: var(--azul5);
     
 }
@@ -417,14 +417,14 @@ form input[type="submit"]{
     }
     
     .hero_title{
-        font-size: 7rem;
+        font-size: 4rem;
         color: #1f1f1f;
         max-width: 100%;
       
     
     }
     .hero_title span{
-        font-size: 10rem;
+        font-size: 6rem;
         color: var(--azul5);
         
     }

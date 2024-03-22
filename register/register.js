@@ -70,40 +70,6 @@ registrationForm.addEventListener('submit', async function (event) {
 });
 
 
-// Obtener el elemento select de los asilos
-const nursingHomeSelect = document.getElementById('nursingHome');
-
-// Función para obtener los datos de la API y poblar el select
-async function fetchNursingHomes() {
-    try {
-        console.log('Iniciando solicitud a la API externa...');
-        const response = await fetch('/viewasilos');
-        if (!response.ok) {
-            throw new Error('La solicitud no se completó correctamente');
-        }
-        console.log('Datos recibidos correctamente de la API externa.');
-        const data = await response.json();
-        console.log('Datos obtenidos:', data);
-
-        // Accedemos a la primera matriz que contiene los datos de los asilos
-        const nursingHomesData = data[0];
-
-        const nursingHomeSelect = document.getElementById('nursingHome');
-        nursingHomeSelect.innerHTML = ""; // Limpiar el select antes de agregar las nuevas opciones
-        nursingHomesData.forEach(asilo => {
-            const option = document.createElement('option');
-            option.value = asilo.id_asilo;
-            option.textContent = asilo.nombre_asilo;
-            nursingHomeSelect.appendChild(option);
-        });
-    } catch (error) {
-        console.error('Error al obtener los datos de la API externa:', error);
-    }
-}
-
-
-// Llamar a la función para obtener los datos de la API externa al cargar la página
-fetchNursingHomes();
 
 
 //     try {

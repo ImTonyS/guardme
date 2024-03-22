@@ -98,8 +98,8 @@ body{
     background-size: cover;
     background-position: center;
     text-align: center;
-    width: 100%;
-    height: 100vh;
+    width: 70%;
+    height: 50vh;
 }
 
 .hero_texts{
@@ -109,12 +109,12 @@ body{
     text-align: center;
     max-width: 380px;
 
-    padding-top: 100px;
+    padding-top: 50px;
     margin: 0 auto;
 }
 
 .hero_title{
-    font-size: 5.5rem;
+    font-size: 4rem;
     font-weight: 900;
     color: var(--azul5);
     max-width: 100%;
@@ -221,12 +221,12 @@ body{
         text-align: center;
         max-width: 1200px;
     
-        padding-top: 80px;
+        padding-top: 10px;
         margin: 0 auto;
     }
     
     .hero_title{
-        font-size: 10rem;
+        font-size: 7rem;
         font-weight: 900;
         color: var(--azul5);
         max-width: 100%;
@@ -238,15 +238,15 @@ body{
     }
     
     .hero_p{
-        font-size: 2.5rem;
-        line-height: 1.5cm;
+        font-size: 1.8rem;
+        line-height: 1cm;
         color: #1f1f1f;
-        padding-top: 70px;
+        padding-top: 40px;
     }
     
     .hero_cta{ 
         text-decoration: none;
-        font-size: 2rem;
+        font-size: 1.5rem;
         color: var(--azul5);
         font-weight: 900;
         border: 3px solid var(--azul5);
